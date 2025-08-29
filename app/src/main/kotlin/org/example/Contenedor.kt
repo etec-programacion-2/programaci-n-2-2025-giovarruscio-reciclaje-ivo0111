@@ -1,19 +1,24 @@
 package org.example
 
+/*
+    Se eligió una clase regular para Contenedor porque esta clase maneja un estado interno mutable (la lista de productos) y no necesita las funcionalidades adicionales que proporcionan las data class. El enfoque principal aquí es encapsular la lógica de gestión de productos y mantener la integridad del estado interno, lo cual es más adecuado para una clase regular. El encapsulamiento protege los datos internos al evitar modificaciones directas desde fuera de la clase, asegurando que todas las interacciones con la lista de productos se realicen a través de métodos controlados.
+*/
 class Contenedor(val tipoDeMaterial: MaterialReciclable, val capacidadMaxima: Int){
     private val productos: MutableList<Producto> = mutableListOf()
-
+    val estaLleno: Boolean
+        get() = cantidadActual()>=capacidadMaxima
+    // La propiedad 'estaLleno' es una propiedad computada porque su valor se calcula dinámicamente en base a las propiedades 'capacidadActual' y 'capacidadMaxima'. No es necesario almacenarla explícitamente, ya que siempre se puede calcular al momento de acceder a ella. En cambio, propiedades como 'capacidadActual' son almacenadas, y su valor puede modificarse directamente. estaLleno es un buen candidato porque su valor debe cambiar dinamicamente, pero siempre se debe usar el mismo procedimiento para obtener su valor.
     public fun cantidadActual():Int{
         return productos.size
     }
 
     public fun depositar(producto:Producto): Boolean{
-        if (producto.material==tipoDeMaterial && cantidadActual()<capacidadMaxima){
+        if (producto.material==tipoDeMaterial && !estaLleno){
             productos.add(producto)
             println("Producto depositado con éxito")
             return true
         }else{
-            if (cantidadActual()==capacidadMaxima){
+            if (estaLleno){
                 println("Capacidad máxima alcanzada")
                 return false
             } else {
@@ -22,12 +27,11 @@ class Contenedor(val tipoDeMaterial: MaterialReciclable, val capacidadMaxima: In
             }
         }
     }
+
+    public fun vaciar(){
+        productos.clear()
+    }
 }
-
-/*
-    Se eligió una clase regular para Contenedor porque esta clase maneja un estado interno mutable (la lista de productos) y no necesita las funcionalidades adicionales que proporcionan las data class. El enfoque principal aquí es encapsular la lógica de gestión de productos y mantener la integridad del estado interno, lo cual es más adecuado para una clase regular. El encapsulamiento protege los datos internos al evitar modificaciones directas desde fuera de la clase, asegurando que todas las interacciones con la lista de productos se realicen a través de métodos controlados.
-*/
-
 /*
     Secuencia:
     * El jugador intenta depositar un Producto en un Contenedor, llamando al método depositar(producto: Producto) del contenedor.
