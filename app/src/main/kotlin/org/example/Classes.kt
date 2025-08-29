@@ -21,3 +21,26 @@ data class Producto(val nombre: String, val material: MaterialReciclable)
 /*
     Se eligió una data class para Producto porque estas clases están diseñadas para almacenar datos y proporcionan automáticamente métodos útiles como equals(), hashCode() y toString(). Esto facilita la comparación de instancias y representación de estas. Además, las data class fomentan la inmutabilidad, util para mantener la integridad de los datos.
 */
+
+/*
+    Descripción: Un contenedor es el lugar donde se depositan los productos. Debe tener una capacidad limitada y estar asociado a un tipo de material específico.
+    Objetivo de Aprendizaje: Encapsulamiento y gestión de estado interno. Uso de colecciones (como MutableList) de forma segura dentro de una clase.
+    Prerrequisitos: [F1-I1] completado.
+    Criterios de Aceptación:
+    Debe existir una clase Contenedor.
+    Tendrá propiedades para tipoDeMaterial (el MaterialReciclable que acepta), capacidadMaxima (Int) y una lista privada para almacenar los Productos.
+    Debe exponer un método público para obtener la cantidad actual de productos que contiene, sin exponer la lista mutable interna.
+    El estudiante debe explicar cómo el encapsulamiento protege el estado interno del contenedor, evitando que sea modificado incorrectamente desde fuera.
+*/
+
+class Contenedor(val tipoDeMaterial: MaterialReciclable, val capacidadMaxima: Int){
+    private val productos: MutableList<Producto> = mutableListOf()
+
+    public fun cantidadActual():Int{
+        return productos.size
+    }
+}
+
+/*
+    Se eligió una clase regular para Contenedor porque esta clase maneja un estado interno mutable (la lista de productos) y no necesita las funcionalidades adicionales que proporcionan las data class. El enfoque principal aquí es encapsular la lógica de gestión de productos y mantener la integridad del estado interno, lo cual es más adecuado para una clase regular. El encapsulamiento protege los datos internos al evitar modificaciones directas desde fuera de la clase, asegurando que todas las interacciones con la lista de productos se realicen a través de métodos controlados.
+*/
