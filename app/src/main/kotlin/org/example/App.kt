@@ -1,13 +1,11 @@
-
 package org.example
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
-}
-
 fun main() {
-    println(App().greeting)
+    val contenedorPlastico = Contenedor(MaterialReciclable.Plastico(), 2)
+    val botella = Producto("Botella", MaterialReciclable.Plastico())
+    val lata = Producto("Lata", MaterialReciclable.Metal())
+    contenedorPlastico.depositar(botella)
+    contenedorPlastico.depositar(lata)
+    contenedorPlastico.depositar(botella)
+    contenedorPlastico.depositar(botella)
 }
