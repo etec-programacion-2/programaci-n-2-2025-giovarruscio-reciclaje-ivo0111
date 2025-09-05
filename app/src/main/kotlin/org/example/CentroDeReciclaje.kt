@@ -8,9 +8,12 @@ class CentroDeReciclaje(){
         Contenedor(MaterialReciclable.Metal(), 50),
         Contenedor(MaterialReciclable.Organico(), 40)
     )
-    public fun recibirProducto(producto: Producto): Boolean {
+    public fun recibirProducto(producto: Producto, tipoDeMaterial : MaterialReciclable): Boolean {
         for (contenedor in contenedores){
-            if (contenedor.tipoDeMaterial == producto.material){
+            if (contenedor.tipoDeMaterial == tipoDeMaterial){
+                if (contenedor.tipoDeMaterial !== producto.material) {
+                    return false
+                }
                 val estado = contenedor.depositar(producto)
                 if (estado){productosDepositados++}
                 return estado
