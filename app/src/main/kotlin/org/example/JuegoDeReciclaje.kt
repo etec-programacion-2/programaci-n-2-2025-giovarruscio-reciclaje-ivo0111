@@ -1,11 +1,18 @@
 package org.example
 
+import kotlin.collections.listOf
+
 class JuegoDeReciclaje(){
     val centroDeReciclaje = CentroDeReciclaje()
     val score = 0
-    private fun siguienteProducto(): Producto {
-        val productoAleatorio = ProductoEnum.values().random()
-        return productoAleatorio.toProducto()
+    val productos = enumValues<ProductoEnum>().toMutableList()
+    public fun siguienteProducto(): Producto? {
+        if (productos.isEmpty()){
+            return null
+        }
+        val producto = productos.random()
+        productos.remove(producto)
+        return producto.toProducto()
     }
     public fun intentarClasificar(producto: Producto, tipoDeMaterial: MaterialReciclable): Boolean{
         if (centroDeReciclaje.recibirProducto(producto, tipoDeMaterial)){
@@ -15,6 +22,9 @@ class JuegoDeReciclaje(){
             println("Incorrecto! No se suma punto")
             return false
         }
+    }
+    public fun estadisticas():Int{
+        return centroDeReciclaje.estadísticas()
     }
 }
 
