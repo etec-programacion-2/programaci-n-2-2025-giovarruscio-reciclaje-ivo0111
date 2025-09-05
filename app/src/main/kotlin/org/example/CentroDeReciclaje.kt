@@ -1,6 +1,6 @@
 package org.example
 class CentroDeReciclaje(){
-    val productosDepositados = 0
+    var productosDepositados = 0
     val contenedores: List<Contenedor> = listOf(
         Contenedor(MaterialReciclable.Plastico(), 70),
         Contenedor(MaterialReciclable.Vidrio(), 80),
@@ -8,9 +8,12 @@ class CentroDeReciclaje(){
         Contenedor(MaterialReciclable.Metal(), 50),
         Contenedor(MaterialReciclable.Organico(), 40)
     )
-    public fun recibirProducto(producto: Producto): Boolean {
+    public fun recibirProducto(producto: Producto, tipoDeMaterial : MaterialReciclable): Boolean {
         for (contenedor in contenedores){
-            if (contenedor.tipoDeMaterial == producto.material){
+            if (contenedor.tipoDeMaterial == tipoDeMaterial){
+                if (contenedor.tipoDeMaterial !== producto.material) {
+                    return false
+                }
                 val estado = contenedor.depositar(producto)
                 if (estado){productosDepositados++}
                 return estado
@@ -18,7 +21,7 @@ class CentroDeReciclaje(){
         }
         return false
     }
-    public fun estadísticas(){
+    public fun estadísticas():Int{
         return productosDepositados
     }
 }
