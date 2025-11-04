@@ -47,11 +47,11 @@ Al iniciar el juego, verás un mensaje de bienvenida
 Se te presentará un producto (ej: "Botella de agua")
 Debes elegir el contenedor correcto ingresando un número del 1 al 5:
 
-1: Plástico (contenedor naranja)
-2: Vidrio (contenedor verde)
-3: Papel (contenedor azul)
-4: Metal (contenedor amarillo)
-5: Orgánico (contenedor gris)
+1. Plástico (contenedor naranja)
+2. Vidrio (contenedor verde)
+3. Papel (contenedor azul)
+4. Metal (contenedor amarillo)
+5. Orgánico (contenedor gris)
 
 El juego te dirá si acertaste o no
 Continúa clasificando productos hasta que no queden más
