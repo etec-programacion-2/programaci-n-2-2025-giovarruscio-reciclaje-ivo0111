@@ -28,18 +28,11 @@ chmod +x gradlew
 ```
 3. Compilar el Proyecto
 ```bash
-# En Linux/Mac:
 ./gradlew build
-# En Windows:
-./gradlew.bat build
 ```
 4. Ejecutar el Juego
 ```bash
-# En Linux/Mac:
 ./gradlew run
-
-# En Windows:
-gradlew.bat run
 ```
 ## Cómo Jugar
 
